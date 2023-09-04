@@ -1,0 +1,40 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "root": true,
+  "plugins": [
+    "@typescript-eslint/eslint-plugin",
+    "react",
+    "prettier",
+    "react-hooks"
+  ],
+  "rules": {
+    "semi": "off",
+    "@typescript-eslint/semi": [
+      "error"
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "warn"
+    ],
+    "@typescript-eslint/explicit-module-boundary-types": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ]
+}
