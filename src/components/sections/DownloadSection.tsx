@@ -75,7 +75,7 @@ export const DownloadSection = (): JSX.Element => {
 
 const DownloadSectionWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.slightPurple};
-  padding: 54px 24px 50px;
+  padding: 110px 24px 50px;
 
   display: flex;
   flex-direction: column;

@@ -15,6 +15,13 @@ const HeaderWrapper = styled.div`
   width: 100%;
   height: 56px;
 
+  background-color: ${({ theme }) => theme.colors.white};
+
+  position: fixed;
+  top: 0;
+
+  z-index: 1000;
+
   display: grid;
   place-items: center;
 `;

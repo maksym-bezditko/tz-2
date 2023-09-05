@@ -1,8 +1,7 @@
 import React from 'react';
-import { ListHeading } from './typography/ListHeading';
 import { styled } from 'styled-components';
 import { ListItem } from '../models';
-import { ListSubtitle } from './typography/ListSubtitle';
+import { List } from './List';
 
 type Props = {
   title: string;
@@ -34,24 +33,16 @@ export const ListWithVideo = ({
       <source src={`./videos/${fileName}.mp4`} type="video/mp4" />
     </VideoWrapper>
 
-    <ListWrapper marginTop={marginBetweenVideoAndList}>
-      <ListHeading fontSize={listHeadingFontSize}>{title}</ListHeading>
-
-      {subtitle && <ListSubtitle>{subtitle}</ListSubtitle>}
-
-      <PaddingWrapper withHorizontalListPadding={withHorizontalListPadding}>
-        {listItems.map((item) => (
-          <ListItemWrapper
-            marginBetweenListItems={marginBetweenListItems}
-            key={item.text}
-          >
-            {item.icon}
-
-            <ListItemText isBold={areListItemsBold}>{item.text}</ListItemText>
-          </ListItemWrapper>
-        ))}
-      </PaddingWrapper>
-    </ListWrapper>
+    <List
+      title={title}
+      subtitle={subtitle}
+      listItems={listItems}
+      areListItemsBold={areListItemsBold}
+      marginTop={marginBetweenVideoAndList}
+      listHeadingFontSize={listHeadingFontSize}
+      marginBetweenListItems={marginBetweenListItems}
+      withHorizontalListPadding={withHorizontalListPadding}
+    />
   </ListWithVideoWrapper>
 );
 
@@ -62,43 +53,7 @@ const ListWithVideoWrapper = styled.div<{
 `;
 
 const VideoWrapper = styled.video`
-  border-radius: 14px;
-
-  width: 100%;
-`;
-
-const ListWrapper = styled.div<{
-  marginTop: number;
-}>`
-  margin-top: ${(props) => props.marginTop}px;
-
-  width: 100%;
-`;
-
-const ListItemWrapper = styled.div<{
-  marginBetweenListItems: number;
-}>`
-  display: flex;
-  flex-direction: row;
-
-  align-items: center;
-
-  margin-top: ${({ marginBetweenListItems }) => marginBetweenListItems}px;
-`;
-
-const ListItemText = styled.span<{
-  isBold: boolean;
-}>`
-  font-size: 14px;
-  margin-left: 10px;
-  font-weight: ${(props) => (props.isBold ? 700 : 400)};
-`;
-
-const PaddingWrapper = styled.div<{
-  withHorizontalListPadding: boolean;
-}>`
-  padding-left: ${(props) => (props.withHorizontalListPadding ? 22 : 0)}px;
-  padding-right: ${(props) => (props.withHorizontalListPadding ? 22 : 0)}px;
+  border-radius: 50px;
 
   width: 100%;
 `;
