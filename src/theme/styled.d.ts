@@ -1,7 +1,8 @@
 import 'styled-components';
+import { StyledBreakpointsTheme } from 'styled-breakpoints';
 
 declare module 'styled-components' {
-  export interface DefaultTheme {
+  export interface DefaultTheme extends StyledBreakpointsTheme {
     colors: {
       white: string;
       slightPurple: string;
@@ -19,6 +20,15 @@ declare module 'styled-components' {
       purpleBlue: string;
       lightGreen: string;
       primaryGreen: string;
+      limeGreen: string;
+      badgePurple: string;
+    };
+    breakpoints: {
+      xxs: string;
+      xs: string;
+      sm: string;
+      md: string;
+      lg: string;
     };
   }
 }

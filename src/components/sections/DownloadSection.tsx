@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { styled } from 'styled-components';
 import { Heading } from '../typography/Heading';
 import theme from '../../theme';
 import { Subtitle } from '../typography/Subtitle';
-import { Button } from '../Button';
+import { BIG_BUTTON_HEIGHT, Button } from '../Button';
 import { AppleLogo } from '../icons/AppleLogo';
 import { MacOSLogo } from '../icons/MacOSLogo';
 import { CheckIcon } from '../icons/CheckIcon';
 import { ListItem } from '../../models';
 import { ListWithVideo } from '../ListWithVideo';
+import { HEADER_HEIGHT } from '../Header';
 
 const SizedCheckIcon = <CheckIcon width={16} height={18} />;
 
@@ -32,20 +33,56 @@ const LIST_OF_ABILITIES: ListItem[] = [
   },
 ];
 
-export const DownloadSection = (): JSX.Element => {
+type Props = {
+  setIsHeaderButtonVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  handleProtectMeNow: () => void;
+};
+
+export const DownloadSection = ({
+  setIsHeaderButtonVisible,
+  handleProtectMeNow,
+}: Props): JSX.Element => {
+  const elementRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const getElementPosition = () => {
+      const element = elementRef.current;
+      if (element) {
+        const rect = element.getBoundingClientRect();
+
+        if (rect.top <= HEADER_HEIGHT - BIG_BUTTON_HEIGHT) {
+          setIsHeaderButtonVisible(true);
+        } else {
+          setIsHeaderButtonVisible(false);
+        }
+      }
+    };
+
+    getElementPosition();
+
+    window.addEventListener('scroll', getElementPosition);
+    window.addEventListener('resize', getElementPosition);
+
+    return () => {
+      window.removeEventListener('scroll', getElementPosition);
+      window.removeEventListener('resize', getElementPosition);
+    };
+  }, [setIsHeaderButtonVisible]);
+
   return (
     <DownloadSectionWrapper>
       <Heading>Stop your</Heading>
+
       <Heading color={theme.colors.primaryPurple}>
         phone from being spied on
       </Heading>
 
-      <Subtitle>
+      <Subtitle $marginTop={15}>
         Try Clario, a smart anti-spy app that effectively protects your privacy.{' '}
       </Subtitle>
 
-      <ButtonWrapper>
-        <Button>Protect me now</Button>
+      <ButtonWrapper ref={elementRef}>
+        <Button onClick={handleProtectMeNow}>Protect me now</Button>
       </ButtonWrapper>
 
       <AvailablePlatformsWrapper>
@@ -68,6 +105,7 @@ export const DownloadSection = (): JSX.Element => {
         listItems={LIST_OF_ABILITIES}
         title="The anti-spy Clario app can:"
         withHorizontalListPadding={true}
+        isFeature={false}
       />
     </DownloadSectionWrapper>
   );
@@ -86,6 +124,9 @@ const DownloadSectionWrapper = styled.div`
 const ButtonWrapper = styled.div`
   margin-top: 35px;
   width: 100%;
+
+  display: grid;
+  place-items: center;
 `;
 
 const AvailablePlatformsWrapper = styled.div`

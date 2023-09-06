@@ -18,6 +18,15 @@ const theme: DefaultTheme = {
     purpleBlue: '#293877',
     lightGreen: '#edf5e4',
     primaryGreen: '#4a6246',
+    limeGreen: '#8cd5bf',
+    badgePurple: '#1e2251',
+  },
+  breakpoints: {
+    xxs: '320px',
+    xs: '375px',
+    sm: '426px',
+    md: '769px',
+    lg: '1024px',
   },
 };
 

@@ -2,18 +2,38 @@ import React from 'react';
 
 import { styled } from 'styled-components';
 import ClarioLogo from '../assets/Logo.png';
+import { Button } from './Button';
 
-export const Header = (): JSX.Element => {
+type Props = {
+  isHeaderButtonVisible: boolean;
+  handleProtectMeNow: () => void;
+};
+
+export const HEADER_HEIGHT = 56;
+
+export const Header = ({
+  isHeaderButtonVisible,
+  handleProtectMeNow,
+}: Props): JSX.Element => {
   return (
-    <HeaderWrapper>
+    <HeaderWrapper $isCentered={!isHeaderButtonVisible}>
       <LogoImage />
+
+      {isHeaderButtonVisible && (
+        <Button $isSmall onClick={handleProtectMeNow}>
+          Protect me now
+        </Button>
+      )}
     </HeaderWrapper>
   );
 };
 
-const HeaderWrapper = styled.div`
+const HeaderWrapper = styled.div<{
+  $isCentered: boolean;
+}>`
   width: 100%;
-  height: 56px;
+  height: ${HEADER_HEIGHT}px;
+  padding: 17px 24px;
 
   background-color: ${({ theme }) => theme.colors.white};
 
@@ -22,8 +42,10 @@ const HeaderWrapper = styled.div`
 
   z-index: 1000;
 
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: ${({ $isCentered }) =>
+    $isCentered ? 'center' : 'space-between'};
+  align-items: center;
 `;
 
 const LogoImage = styled.img.attrs({

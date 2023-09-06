@@ -5,7 +5,7 @@ import { Slider } from '../Slider';
 
 export const SliderSection = (): JSX.Element => (
   <SliderSectionWrapper>
-    <Heading paddingHorizontal={32}>
+    <Heading $paddingHorizontal={32}>
       Let’s hear what real Clario users say.{' '}
     </Heading>
 

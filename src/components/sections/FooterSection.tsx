@@ -5,7 +5,11 @@ import theme from '../../theme';
 import { Button } from '../Button';
 import ClarioLogo from '../../assets/Logo.png';
 
-export const FooterSection = (): JSX.Element => (
+type Props = {
+  handleProtectMeNow: () => void;
+};
+
+export const FooterSection = ({ handleProtectMeNow }: Props): JSX.Element => (
   <FooterSectionWrapper>
     <SloganWrapper>
       <Heading>Stop your</Heading>
@@ -14,7 +18,7 @@ export const FooterSection = (): JSX.Element => (
       </Heading>
 
       <ButtonWrapper>
-        <Button>Protect me now</Button>
+        <Button onClick={handleProtectMeNow}>Protect me now</Button>
       </ButtonWrapper>
     </SloganWrapper>
 
@@ -38,6 +42,9 @@ const SloganWrapper = styled.div`
 const ButtonWrapper = styled.div`
   margin-top: 40px;
   width: 100%;
+
+  display: grid;
+  place-items: center;
 `;
 
 const LogoImage = styled.img.attrs({

@@ -123,7 +123,9 @@ const LIST_OF_FEATURES: FeatureListItem[] = [
 export const FeatureSection = (): JSX.Element => {
   return (
     <FeatureSectionWrapper>
-      <Heading marginBottom={30}>Clario helps you easily avoid spying.</Heading>
+      <Heading $marginBottom={30}>
+        Clario helps you easily avoid spying.
+      </Heading>
 
       {LIST_OF_FEATURES.map((item) => (
         <ListWithVideo

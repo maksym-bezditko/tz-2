@@ -27,23 +27,25 @@ export const List = ({
   marginTop = 35,
   withHorizontalListPadding = true,
 }: Props): JSX.Element => (
-  <ListWrapper marginTop={marginTop}>
-    {title && <ListHeading fontSize={listHeadingFontSize}>{title}</ListHeading>}
+  <ListWrapper $marginTop={marginTop}>
+    {title && (
+      <ListHeading $fontSize={listHeadingFontSize}>{title}</ListHeading>
+    )}
 
     {subtitle && <ListSubtitle>{subtitle}</ListSubtitle>}
 
     <PaddingWrapper>
       {listItems.map((item) => (
         <ListItemWrapper
-          withHorizontalListPadding={withHorizontalListPadding}
-          marginBetweenListItems={marginBetweenListItems}
+          $withHorizontalListPadding={withHorizontalListPadding}
+          $marginBetweenListItems={marginBetweenListItems}
           key={item.text}
         >
           {item.icon}
 
           <ListItemText
-            isBold={areListItemsBold}
-            fontSize={listItemTextFontSize}
+            $isBold={areListItemsBold}
+            $fontSize={listItemTextFontSize}
           >
             {item.text}
           </ListItemText>
@@ -54,34 +56,34 @@ export const List = ({
 );
 
 const ListWrapper = styled.div<{
-  marginTop: number;
+  $marginTop: number;
 }>`
-  margin-top: ${(props) => props.marginTop}px;
+  margin-top: ${(props) => props.$marginTop}px;
 
   width: 100%;
 `;
 
 const ListItemWrapper = styled.div<{
-  marginBetweenListItems: number;
-  withHorizontalListPadding: boolean;
+  $marginBetweenListItems: number;
+  $withHorizontalListPadding: boolean;
 }>`
   display: flex;
 
   align-items: center;
 
-  margin-top: ${({ marginBetweenListItems }) => marginBetweenListItems}px;
+  margin-top: ${({ $marginBetweenListItems }) => $marginBetweenListItems}px;
 
-  width: ${({ withHorizontalListPadding }) =>
-    withHorizontalListPadding ? '80%' : '100%'};
+  width: ${({ $withHorizontalListPadding }) =>
+    $withHorizontalListPadding ? '80%' : '100%'};
 `;
 
 const ListItemText = styled.span<{
-  isBold: boolean;
-  fontSize: number;
+  $isBold: boolean;
+  $fontSize: number;
 }>`
-  font-size: ${({ fontSize }) => fontSize}px;
+  font-size: ${({ $fontSize }) => $fontSize}px;
   margin-left: 10px;
-  font-weight: ${(props) => (props.isBold ? 700 : 400)};
+  font-weight: ${(props) => (props.$isBold ? 700 : 400)};
 `;
 
 const PaddingWrapper = styled.div`
@@ -90,4 +92,6 @@ const PaddingWrapper = styled.div`
   align-items: center;
 
   width: 100%;
+
+  max-width: 400px;
 `;

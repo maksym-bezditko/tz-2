@@ -5,6 +5,8 @@
   border: none;
 
   font-family: 'Moderat';
+
+  -webkit-tap-highlight-color: transparent;
 }
 
 @font-face {

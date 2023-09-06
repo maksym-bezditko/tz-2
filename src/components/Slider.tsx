@@ -81,16 +81,16 @@ export const Slider = (): JSX.Element => {
         {CARD_ITEMS.map((item) => (
           <CarouselItem
             key={item.textContent}
-            backgroundColor={item.backgroundColor}
+            $backgroundColor={item.backgroundColor}
           >
             {item.logo}
 
             <ContentWrapper>
-              <TextContent isBold color={item.textColor}>
+              <TextContent $isBold $color={item.textColor}>
                 {item.textContent}
               </TextContent>
 
-              <TextContent color={item.textColor}>{item.author}</TextContent>
+              <TextContent $color={item.textColor}>{item.author}</TextContent>
             </ContentWrapper>
           </CarouselItem>
         ))}
@@ -131,9 +131,9 @@ const ScrollWrapper = styled.div`
 `;
 
 const CarouselItem = styled.div<{
-  backgroundColor: string;
+  $backgroundColor: string;
 }>`
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
   height: 340px;
   min-width: 94%;
   padding-left: 10px;
@@ -148,13 +148,13 @@ const CarouselItem = styled.div<{
 `;
 
 const TextContent = styled.p<{
-  isBold?: boolean;
-  color: string;
+  $isBold?: boolean;
+  $color: string;
 }>`
   font-size: 16px;
-  font-weight: ${({ isBold }) => (isBold ? 'bold' : 'normal')};
+  font-weight: ${({ $isBold }) => ($isBold ? 'bold' : 'normal')};
 
-  color: ${({ color }) => color};
+  color: ${({ $color }) => $color};
 `;
 
 const ContentWrapper = styled.div`
@@ -190,4 +190,6 @@ const ControlButton = styled.button`
   background-color: ${({ theme }) => theme.colors.white};
 
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+
+  cursor: pointer;
 `;
